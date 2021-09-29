@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-   name: myapp-dep
-   labels:
-     env: production
+  name: image-processing-deployment
+  labels:
+    tier: backend
 spec:
-  selector:
-     matchLabels:
-       env: production
-  replicas: 3
+  replicas: 4
   template:
     metadata:
-       name: ngin
-       labels:
-         env: production
+      name: image-processing-pod
+      labels:
+        tier: backend
     spec:
       containers:
-        - name: ngin
-          image: nginx
+        - name: mycustom-image-processing
+          image: someorg/mycustom-image-processing
+  selector:
+    matchLabels:
+      tier: backend
